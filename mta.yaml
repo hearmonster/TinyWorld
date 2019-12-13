@@ -9,8 +9,45 @@ modules:
    requires:
     - name: hdi_tinydb
 
+
+ - name: tinyjs
+   type: nodejs
+   path: tinyjs
+   provides:
+    - name: tinyjs_api
+      properties:
+         url: ${default-url}
+
+
+ - name: tinyui
+   type: html5
+   path: tinyui
+   parameters:
+      disk-quota: 256M
+      memory: 256M
+   build-parameters:
+      builder: grunt
+   requires:
+    - name: uaa_tinyworld
+    - name: dest_tinyworld
+
 resources:
  - name: hdi_tinydb
    properties:
       hdi-container-name: ${service-name}
    type: com.sap.xs.hdi-container
+
+ - name: uaa_tinyworld
+   parameters:
+      path: ./xs-security.json
+      service-plan: application
+      service: xsuaa
+   type: org.cloudfoundry.managed-service
+
+
+ - name: dest_tinyworld
+   parameters:
+      service-plan: lite
+      service: destination
+   type: org.cloudfoundry.managed-service
+

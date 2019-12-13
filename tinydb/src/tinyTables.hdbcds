@@ -1,0 +1,9 @@
+namespace TinyWorld.tinydb;
+
+context tinyTables {
+
+    /*@@layout{"layoutInfo":{"x":-225,"y":-57.5}}*/
+    entity continents {
+        key continent : String(100);
+    };
+};
