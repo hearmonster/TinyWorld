@@ -6,4 +6,10 @@ context tinyTables {
     entity continents {
         key continent : String(100);
     };
+
+    /*@@layout{"layoutInfo":{"x":-459,"y":-46.5}}*/
+    entity countries {
+        key country : String(100);
+            partOf  : association[0..1] to tinyTables.continents;
+    };
 };
